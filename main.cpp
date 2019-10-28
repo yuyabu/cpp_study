@@ -72,5 +72,7 @@ void copy_fct(){
     for (auto i=0;i!=10; ++i){
         v2[i]=v1[i];
     }
-    std::cout << *(v2+8) << std::endl;//88
+    for (auto &x:v2){
+        std::cout << x << std::endl;//88
+    }
 }
