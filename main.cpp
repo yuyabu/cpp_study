@@ -7,6 +7,7 @@ void auto_init();
 void const_test();
 constexpr int square(int v);
 void condition_test();
+void copy_fct();
 
 int main(){
     hellowolrd();
@@ -14,7 +15,8 @@ int main(){
     init_syntax();
     auto_init();
     const_test();
-    condition_test();
+    //condition_test(); //入力を求められてうざいのでコメントアウト
+    copy_fct();
 }
 
 void hellowolrd(){
@@ -60,4 +62,15 @@ void condition_test(){
         std::cout << "No" << std::endl;
     else
         std::cout << "other" << std::endl;
+}
+void pointer_test(){
+
+}
+void copy_fct(){
+    int v1[10] = {0,11,22,33,44,55,66,77,88,99};
+    int v2[10];
+    for (auto i=0;i!=10; ++i){
+        v2[i]=v1[i];
+    }
+    std::cout << *(v2+8) << std::endl;//88
 }
