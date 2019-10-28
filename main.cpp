@@ -6,6 +6,7 @@ void init_syntax();
 void auto_init();
 void const_test();
 constexpr int square(int v);
+void condition_test();
 
 int main(){
     hellowolrd();
@@ -13,6 +14,7 @@ int main(){
     init_syntax();
     auto_init();
     const_test();
+    condition_test();
 }
 
 void hellowolrd(){
@@ -45,4 +47,17 @@ void const_test(){
 }
 constexpr int square(int v){
     return v*v;
+}
+void condition_test(){
+    std::cout << "y or n?\n";
+
+    char answer =0;
+    std::cin >>answer;
+
+    if (answer=='y')
+        std::cout << "yes" << std::endl;
+    else if(answer =='n')
+        std::cout << "No" << std::endl;
+    else
+        std::cout << "other" << std::endl;
 }
