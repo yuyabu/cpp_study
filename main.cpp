@@ -8,7 +8,9 @@ void const_test();
 constexpr int square(int v);
 void condition_test();
 void copy_fct();
-
+void enum_test();
+enum class Traffic_light;
+Traffic_light& operator++(Traffic_light& t);
 int main(){
     hellowolrd();
     some_function();
@@ -17,6 +19,7 @@ int main(){
     const_test();
     //condition_test(); //入力を求められてうざいのでコメントアウト
     copy_fct();
+    enum_test();
 }
 
 void hellowolrd(){
@@ -74,5 +77,57 @@ void copy_fct(){
     }
     for (auto &x:v2){
         std::cout << x << std::endl;//88
+    }
+}
+
+enum class Color{red,blue,green};
+enum Week {sun,man,tus,wed,the,fri,sat};
+
+enum class Traffic_light{green,yellow,red};
+/**
+ * 前置インクリメント
+ * @param t
+ * @return
+ */
+Traffic_light& operator++(Traffic_light& t){
+    switch(t){
+        case Traffic_light::green:  return  t = Traffic_light::yellow;
+        case Traffic_light::yellow: return t = Traffic_light::red;
+        case Traffic_light::red:    return    t = Traffic_light::green;
+    }
+}
+
+void enum_test(){
+    Color col = Color::red;
+    //Color col2 = 0;//error
+    /**
+     * enum classにint型の代入はできない。以下のエラーメッセージがでる。
+     * Cannot initialize a variable of type 'Color' with an rvalue of type 'int'
+     */
+
+    //if(col==0){}
+    /**
+     * enum classはintと比較できない。
+     * Cannot initialize a variable of type 'Color' with an rvalue of type 'int'
+     */
+    Week week = sun;
+    if (week == 0){
+        /**
+         * enumとintの比較は可能。
+         */
+        std::cout << "Week:Sun is 0!!!" << std::endl;
+    }
+    //week = 1;
+    /**
+     * enumに対してintは比較はできるが、代入は無理みたいだ。
+     * assigning to 'Week' from incompatible type 'int'
+     */
+
+    Traffic_light t = Traffic_light::red;
+    ++t;
+    ++t;
+
+    if(t ==Traffic_light::yellow){
+        std::cout << "light is yellow!" << std::endl;
     }
 }
