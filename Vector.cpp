@@ -1,8 +1,14 @@
 #include "Vector.h"
 #include <stdexcept>
+using namespace std;
 Vector::Vector(int s)
     :elem{new double[s]},sz{s}
 {
+    if(s<0) {
+        throw length_error{""};
+    }
+    elem = new double[s];
+    sz=s;
 
 }
 

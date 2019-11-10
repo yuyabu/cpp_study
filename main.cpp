@@ -1,4 +1,5 @@
 #include<iostream>
+#include "Vector.h"
 
 void hellowolrd();
 void some_function();
@@ -9,6 +10,7 @@ constexpr int square(int v);
 void condition_test();
 void copy_fct();
 void enum_test();
+void invariant_test();
 enum class Traffic_light;
 Traffic_light& operator++(Traffic_light& t);
 int main(){
@@ -20,6 +22,7 @@ int main(){
     //condition_test(); //入力を求められてうざいのでコメントアウト
     copy_fct();
     enum_test();
+    invariant_test();
 }
 
 void hellowolrd(){
@@ -129,5 +132,16 @@ void enum_test(){
 
     if(t ==Traffic_light::yellow){
         std::cout << "light is yellow!" << std::endl;
+    }
+}
+void invariant_test(){
+    try{
+        Vector v(-27);
+    }
+    catch(std::length_error){
+        std::cout << "負数を処理" << std::endl;
+    }
+    catch(std::bad_alloc){
+        std::cout << "記憶領域不足を処理" << std::endl;
     }
 }
